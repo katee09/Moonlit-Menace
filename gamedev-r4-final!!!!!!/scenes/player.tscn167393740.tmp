@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://jr7ng05gnpuv"]
+
+[ext_resource type="Texture2D" uid="uid://ckdr07wxyh17k" path="res://assets/idle sprite.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bgsg3rp6tpb3v" path="res://scenes/scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cm7cc2icyqxwf" path="res://assets/run sprite.png" id="3_qhqgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
+size = Vector2(110, 196)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 108.116
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_g2els")
+speed = 500.0
+idle_texture = ExtResource("1_3vyb7")
+run_texture = ExtResource("3_qhqgy")
+attack_texture = ExtResource("3_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 12)
+shape = SubResource("RectangleShape2D_3vyb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 16)
+scale = Vector2(0.201085, 0.201085)
+texture = ExtResource("1_3vyb7")
+region_enabled = true
+region_rect = Rect2(2650.34, 1132.63, 789.75, 1146.66)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(169, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-170, 17)
+shape = SubResource("CircleShape2D_qhqgy")

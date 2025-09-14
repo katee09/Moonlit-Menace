@@ -1,0 +1,168 @@
+[gd_scene load_steps=15 format=3 uid="uid://olpjyef172mm"]
+
+[ext_resource type="PackedScene" uid="uid://jr7ng05gnpuv" path="res://scenes/player.tscn" id="1_4wyf3"]
+[ext_resource type="Script" uid="uid://dmbeasljyijfv" path="res://scenes/scripts/world.gd" id="1_k0juu"]
+[ext_resource type="Texture2D" uid="uid://b6eksiwo0kbfs" path="res://assets/Background.png" id="2_71j4m"]
+[ext_resource type="PackedScene" uid="uid://isad2pt3oao4" path="res://scenes/wolf.tscn" id="2_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://pj4jwltvjx1f" path="res://scenes/bear.tscn" id="3_e3hyu"]
+[ext_resource type="Script" uid="uid://cplyoomajj80o" path="res://scenes/scripts/control.gd" id="3_qfnet"]
+[ext_resource type="PackedScene" uid="uid://b3nd0ouusdrxy" path="res://scenes/SpeedBoost.tscn" id="6_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://cv4mjacoe58d3" path="res://scenes/Heart.tscn" id="7_w7kh3"]
+[ext_resource type="Texture2D" uid="uid://bm664vyeiw726" path="res://assets/idle sprite.png" id="8_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://xqqe8crbn40l" path="res://scenes/Coin.tscn" id="8_e3hyu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qfnet"]
+distance = -637.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i7141"]
+normal = Vector2(0.999841, 0.0178089)
+distance = 34.7146
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4mrxx"]
+normal = Vector2(-0.999938, 0.0111104)
+distance = -1109.18
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7r4gi"]
+normal = Vector2(-0.00426132, 0.999991)
+distance = 91.529
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_k0juu")
+wolf_scene = ExtResource("2_w7kh3")
+bear_scene = ExtResource("3_e3hyu")
+coin_scene = ExtResource("8_e3hyu")
+heart_scene = ExtResource("7_w7kh3")
+speed_boost_scene = ExtResource("6_7r4gi")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(-9, -344)
+scale = Vector2(1.25095, 1.25095)
+texture = ExtResource("2_71j4m")
+centered = false
+region_rect = Rect2(0, 0, 928, 793)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -107.0
+offset_top = -344.0
+offset_right = 1240.0
+offset_bottom = 762.0
+color = Color(1, 1, 1, 0.0862745)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_qfnet")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1176.0
+offset_bottom = 648.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.343
+anchor_top = 0.665
+anchor_right = 0.686
+anchor_bottom = 0.912
+offset_left = -406.136
+offset_top = -438.92
+offset_right = 372.728
+offset_bottom = 79.024
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 117.0
+offset_right = 232.0
+offset_bottom = 212.0
+
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009
+anchor_top = -3.077
+anchor_right = 4.991
+offset_left = 0.0790002
+offset_top = 37.315
+offset_right = 0.0789795
+offset_bottom = 40.0
+
+[node name="TopBar" type="HBoxContainer" parent="CanvasLayer/HUD/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD/Margin/TopBar"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="CanvasLayer/HUD/Margin/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="LivesLabel" type="Label" parent="CanvasLayer/HUD/Margin/TopBar"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="DayNightTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(569, -61)
+shape = SubResource("WorldBoundaryShape2D_qfnet")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_i7141")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_4mrxx")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(10, -95)
+shape = SubResource("WorldBoundaryShape2D_7r4gi")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Right" type="Marker2D" parent="Spawns"]
+position = Vector2(1045, 522)
+
+[node name="Left" type="Marker2D" parent="Spawns"]
+position = Vector2(102, 528)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-57, 60)
+
+[node name="SfxHit" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-86, 14)
+
+[node name="SfxPickup" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-41, -37)
+
+[node name="Player" parent="." instance=ExtResource("1_4wyf3")]
+position = Vector2(581, -2)
+idle_texture = ExtResource("8_4mrxx")
+
+[node name="PickupTimer" type="Timer" parent="."]

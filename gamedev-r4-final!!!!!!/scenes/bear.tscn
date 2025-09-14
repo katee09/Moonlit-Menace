@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://pj4jwltvjx1f"]
+
+[ext_resource type="Texture2D" uid="uid://dves16tlvw6ny" path="res://assets/bear.png" id="1_a3xf0"]
+[ext_resource type="Script" uid="uid://bwl5paylpelf" path="res://scenes/scripts/enemy.gd" id="1_aquv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3xf0"]
+size = Vector2(244.415, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aquv5"]
+size = Vector2(339, 110)
+
+[node name="Bear" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_aquv5")
+speed = 60.0
+enable_facing_flip = false
+faces_right_by_default = true
+lock_facing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8.7925, 4)
+shape = SubResource("RectangleShape2D_a3xf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 5)
+scale = Vector2(0.208215, 0.208215)
+texture = ExtResource("1_a3xf0")
+region_enabled = true
+region_rect = Rect2(2354.53, 1334.39, 1283.34, 706.219)
+
+[node name="HurtArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2(13.5, -22)
+shape = SubResource("RectangleShape2D_aquv5")

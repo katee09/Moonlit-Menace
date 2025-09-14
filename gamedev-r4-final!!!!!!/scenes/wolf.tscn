@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://isad2pt3oao4"]
+
+[ext_resource type="Script" uid="uid://bwl5paylpelf" path="res://scenes/scripts/enemy.gd" id="1_jrowp"]
+[ext_resource type="Texture2D" uid="uid://bair85p2uwrrc" path="res://assets/wolf.png" id="1_xsq4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsq4n"]
+size = Vector2(215, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrowp"]
+size = Vector2(271.5, 146)
+
+[node name="Wolf" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_jrowp")
+speed = 120.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18.5, 6)
+shape = SubResource("RectangleShape2D_xsq4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15.7802, 10.75)
+scale = Vector2(0.133875, 0.133875)
+texture = ExtResource("1_xsq4n")
+region_enabled = true
+region_rect = Rect2(2240.62, 1083.8, 1716.19, 1169.44)
+
+[node name="HurtArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2(16.25, -15)
+shape = SubResource("RectangleShape2D_jrowp")

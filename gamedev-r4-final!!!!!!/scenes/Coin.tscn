@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://xqqe8crbn40l"]
+
+[ext_resource type="Script" uid="uid://b7472deauw7qf" path="res://scenes/scripts/coin.gd" id="1_owubc"]
+[ext_resource type="Texture2D" uid="uid://c4fbauyff3735" path="res://assets/coin_spin-Sheet.png" id="2_kyq3r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qpsl"]
+radius = 45.0444
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5twpi"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bedda"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2du1a"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2og0"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61u1m"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7om06"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4cfa"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhj0e"]
+atlas = ExtResource("2_kyq3r")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5bujc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5twpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bedda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2du1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2og0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61u1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7om06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4cfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhj0e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_owubc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qpsl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5bujc")
+animation = &"idle"
+frame_progress = 0.471788
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
